@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="navBar.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="#home">Ploegen</a></li>
-        <li><a href="#news">Opstelling</a></li>
-        <li><a href="#contact">Stadions</a></li>
-        <li><a href="#contact">Simulation</a></li>
-    </ul>
-</nav>
+<script type="text/javascript">
+    navBar();
+</script>
+
+<p id="counter"></p>
+
+<script>
+    var countDownDate = new Date("Jun 14, 2018 17:00:00").getTime();
+
+    var x = setInterval(function() {
+
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var dagen = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var uren = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minuten = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconden = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("counter").innerHTML = dagen + " dagen </br>" + uren + ":"
+            + minuten + ":" + seconden;
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "HET WK 2018 IS BEGONNEN!";
+        }
+    }, 1000);
+</script>
 </body>
 </html>
