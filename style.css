@@ -1,8 +1,46 @@
-#counter{
-    font-size: 78px;
-    font-weight: bolder;
+* {
+    margin: 0;
+    padding: 0;
 }
 
+html, body#index{
+    height: 100%;
+}
+
+div#flex-container{
+    width: 250px;
+    height: 100%;
+    margin-left: 45%;
+    margin-right: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    flex-grow: 1;
+}
+
+div#index-logo{
+    background: url("./resources/logo_wk_2018.png") no-repeat center;
+    background-size: 100%;
+    align-self: flex-start;
+    height: 100px;
+    width: 100%;
+}
+
+div#countdown{
+    border: solid white 1px;
+    opacity: 0.9;
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    background-color: black;
+    color: white;
+    align-self: flex-end;
+}
+
+
+div#countdown p:nth-child(1){font-size: 18px;}
+div#countdown p:last-child{font-size: 30px; margin-top: 10px;}
 
 ul {
     list-style-type: none;
