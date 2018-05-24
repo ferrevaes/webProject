@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stadions</title>
+</head>
+<body>
+
+<script src="resources/stadions/stadions.js">
+    function buttonclick() {
+        stadions.forEach(function (arrayItem){
+            let x = arrayItem.lat;
+            alert(x);
+        })
+    }
+</script>
+<button onclick="buttonclick()">click me</button>
+<p id="demo"></p>
+
+<!--<div id="map" style="width:100%;height:100%;position: absolute;top: 0px;left: 0px;"></div>-->
+
+
+
+<script>
+    function myMap() {
+        var mapOptions = {
+            center: new google.maps.LatLng(50.938241299999994, 5.347872),
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.HYBRID
+        }
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDvWvbL6fEfgu5ijYtGnLa44Gt904bqSY&callback=myMap"></script>
+</body>
+</html>
