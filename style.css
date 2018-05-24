@@ -283,3 +283,25 @@ div#countdown p:last-child{font-size: 30px; margin-top: 10px;}
 
 
 /*CSS SANDER*/
+#imgContainer{
+    display: flex;
+    margin-right: 30vw;
+    justify-content: flex-end;
+    flex-direction: row;
+    clear:both;
+}
+#info{
+    border:1px;
+    border-color: #111111;
+    border-style: solid;
+    width: 25vw;
+    padding: 1vw;
+
+}
+#addForm{
+    border:1px;
+}
+#wklogo{
+    width: 20vw;
+    height:6vw;
+}
