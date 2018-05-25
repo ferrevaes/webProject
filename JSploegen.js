@@ -1,24 +1,38 @@
 
-function createDiv(){
-    window.alert("blabla");
+function createDiv(e){
+    e.preventDefault();
+
     let newDiv = document.createElement("div");
-    newDiv.id = "divLand";
-    newDiv.style.width="300px";
-    newDiv.style.width="50px";
-    newDiv.style.border="1px";
-    newDiv.style.borderStyle="solid";
-    newDiv.style.backgroundColor="black";
+    newDiv.className="divLanden";
     let img = document.createElement("img");
+
     img.id="imageLand";
-    let source = document.getElementById('shortcode');
-    img.setAttribute("src", "/resources/landen/"+source+".png");
-    let landNaam = document.getElementById('naam');
-    let beschrijving = document.getElementById('beschrijving');
-    window.alert("test");
-    document.getElementById('ploegen').appendChild(landNaam);
-    window.alert("dingding")
-   // body.appendChild(newDiv);
 
 
+    let source = document.getElementsByName("shortcode")[0].value;
+    window.alert(source);
+    let srcString = "resources/landen/"+source+".png";
+    img.setAttribute("src", srcString);
+    let breakrule = document.createElement("br");
+    let naam = document.createElement("span");
+    naam.innerText=document.getElementsByName('naam')[0].value;
 
+    let beschrijving  = document.createElement("p");
+    beschrijving.innerText= document.getElementsByName('beschrijving')[0].value
+   // let landNaam = document.getElementsByName('naam')[0].value;
+    //let beschrijving = document.getElementsByName('beschrijving')[0].value;
+    newDiv.appendChild(img);
+    newDiv.appendChild(naam);
+    newDiv.appendChild(breakrule);
+    newDiv.appendChild(beschrijving);
+    localStorage.setItem('div',JSON.stringify(newDiv));
+
+    document.getElementById('ploegen').appendChild(newDiv);
+    $(function() {
+        localStorage["myKey"] = JSON.stringify($("#divWithContents").html());
+    })
+
+    // body.appendChild(newDiv);
+}
+function showDivs(e){
 }
