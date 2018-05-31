@@ -1,5 +1,6 @@
 /*CSS FERRE*/
 * {
+    font-family: 'Mitr', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -51,10 +52,13 @@ ul li {
     color: #fffffb;
     font-weight: bold;
     text-align: center;
+
 }
 
 ul li a {
+    color:white;
     display: block;
+    text-decoration: none;
 }
 
 #parent{
