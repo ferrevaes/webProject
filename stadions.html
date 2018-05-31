@@ -3,32 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Stadions</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-<script src="resources/stadions/stadions.js">
-    function buttonclick() {
-        stadions.forEach(function (arrayItem){
-            let x = arrayItem.lat;
-            alert(x);
-        })
-    }
-</script>
-<button onclick="buttonclick()">click me</button>
-<p id="demo"></p>
 
-<!--<div id="map" style="width:100%;height:100%;position: absolute;top: 0px;left: 0px;"></div>-->
+<div id="map" style="width:100%;height:100%;position: absolute;top: 0px;left: 0px;"></div>
 
+<dialog id="dialog" open>
+    <div id="flex-dialog">
+        <label id="stadion" style="font-size: 24px; font-weight: bold"></label><br>
+        <img id="image" style="height: 200px;" src="#">
+        <label style="font-weight: bold">locatie:</label><br>
+        <p id="locatie"></p><br>
+        <label style="font-weight: bold">Capaciteit:</label><br>
+        <p id="capacity"></p>
+        <button style="height: 50px;" onclick="document.getElementById('dialog').style.display = 'none'">Sluiten</button>
+    </div>
+</dialog>
 
+</div>
 
 <script>
+    var stadions = [
+        {lat: 55.7158863, long: 37.5070319, name: "Luzhniki", city: "Moskou", cap: 81006, img: "http://stadiumdb.com/pic-buildings/rus/luzhniki/luzhniki177.jpg"},
+        {lat: 59.9727307, long: 30.2192158, name: "Zenit Arena", city: "Sint-Petersburg", cap: 68134, img: "http://stadiumdb.com/pic-buildings/rus/gazprom_arena/gazprom_arena651.jpg"},
+        {lat: 43.4020701, long: 39.9537504, name: "Fisht Olympic Stadium", city: "Sochi", cap: 47659, img: "http://stadiumdb.com/pic-buildings/rus/sochi_olympic_stadium/sochi_olympic_stadium372.jpg"},
+        {lat: 48.7345449, long: 44.5463401, name: "Volgograd Arena", city: "Volgograd", cap: 45568, img: "http://stadiumdb.com/pic-buildings/rus/volgograd_arena/volgograd_arena198.jpg"},
+        {lat: 56.3372902, long: 43.961062, name: "Stadion Nizhny Novgorod", city: "Nizhny Novgorod", cap: 45331, img: "http://stadiumdb.com/pic-buildings/rus/stadion_nizhny_novgorod/stadion_nizhny_novgorod204.jpg"},
+        {lat: 47.2095847, long: 39.7362356, name: "Rostov Arena", city: "Rostov-on-Don", cap: 45145, img: "http://stadiumdb.com/pic-buildings/rus/rostov_arena/rostov_arena191.jpg"},
+        {lat: 55.820986, long: 49.1587774, name: "Kazan Arena", city: "Kazan", cap: 45105, img: "http://stadiumdb.com/pic-buildings/rus/stadion_rubina_kazan/stadion_rubina_kazan331.jpg"},
+        {lat: 53.2781358, long: 50.235292, name: "Samara Arena", city: "Samara", cap: 44918, img: "http://stadiumdb.com/pic-buildings/rus/samara_arena/samara_arena241.jpg"},
+        {lat: 54.1817979, long: 45.2016627, name: "Mordovia Arnoa", city: "Saransk", cap: 44442, img: "http://stadiumdb.com/pic-buildings/rus/stadion_yubileyniy_saransk/stadion_yubileyniy_saransk271.jpg"},
+        {lat: 55.8177683, long: 37.438174, name: "Otkritie Arena", city: "Moskou", cap: 44000, img: "http://stadiumdb.com/pic-buildings/rus/stadion_spartak/stadion_spartak303.jpg"},
+        {lat: 56.8324789, long: 60.5713934, name: "Tsentralnyj Stadion", city: "Yekaterinburg", cap: 35696, img: "http://stadiumdb.com/pic-buildings/rus/tsentralnyi_stadion_ekaterinburg/tsentralnyi_stadion_ekaterinburg245.jpg"},
+        {lat: 54.6980452, long: 20.530098, name: "Stadion Kaliningrad", city: "Kaliningrad", cap: 35212, img: "http://stadiumdb.com/pic-buildings/rus/stadion_kaliningrad/stadion_kaliningrad145.jpg"}
+    ];
+
     function myMap() {
-        var mapOptions = {
-            center: new google.maps.LatLng(50.938241299999994, 5.347872),
-            zoom: 16,
+        let mapOptions = {
+            center: new google.maps.LatLng(55.751244, 37.618423),
+            zoom: 5,
             mapTypeId: google.maps.MapTypeId.HYBRID
         }
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        let map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        let infowindow = new google.maps.InfoWindow();
+
+        for(let i = 0; i < stadions.length; i++){
+            let img = stadions[i].img;
+
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(stadions[i].lat, stadions[i].long),
+                map: map
+            });
+
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i){
+                return function(){
+                    document.getElementById("dialog").style.display = "inline";
+                    document.getElementById("stadion").innerText = stadions[i].name;
+                    document.getElementById("image").src = stadions[i].img;
+                    document.getElementById("locatie").innerText = stadions[i].city;
+                    document.getElementById("capacity").innerText = stadions[i].cap;
+                }
+            })(marker, i));
+        }
     }
 </script>
 
