@@ -1,38 +1,70 @@
-
+var landen = [];
+let teller = 0;
 function createDiv(e){
     e.preventDefault();
 
-    let newDiv = document.createElement("div");
-    newDiv.className="divLanden";
-    let img = document.createElement("img");
-
-    img.id="imageLand";
 
 
     let source = document.getElementsByName("shortcode")[0].value;
     window.alert(source);
-    let srcString = "resources/landen/"+source+".png";
-    img.setAttribute("src", srcString);
-    let breakrule = document.createElement("br");
-    let naam = document.createElement("span");
-    naam.innerText=document.getElementsByName('naam')[0].value;
+
+
+    let naam = "";
+    naam=document.getElementsByName('naam')[0].value;
 
     let beschrijving  = document.createElement("p");
-    beschrijving.innerText= document.getElementsByName('beschrijving')[0].value
+    beschrijving= document.getElementsByName('beschrijving')[0].value
    // let landNaam = document.getElementsByName('naam')[0].value;
     //let beschrijving = document.getElementsByName('beschrijving')[0].value;
-    newDiv.appendChild(img);
-    newDiv.appendChild(naam);
-    newDiv.appendChild(breakrule);
-    newDiv.appendChild(beschrijving);
-    localStorage.setItem('div',JSON.stringify(newDiv));
 
-    document.getElementById('ploegen').appendChild(newDiv);
-    $(function() {
-        localStorage["myKey"] = JSON.stringify($("#divWithContents").html());
-    })
+    let landObject;
+    landObject = {'shortcode': source,'landnaam':naam,'beschrijving':beschrijving};
+    window.alert("completed");
+    landen.push(landObject);
+
+
+    localStorage.setItem("land",JSON.stringify(landen));
+
+
+
+
+
 
     // body.appendChild(newDiv);
 }
 function showDivs(e){
+    let landen = JSON.parse(localStorage.getItem("land"));
+    let shortcode;
+    let naam="";
+    let beschrijving;
+    let srcString;
+
+    let breakrule = document.createElement("br");
+
+
+
+    for(let i=0;i<landen.length;i++){
+
+        let naam = document.createElement("span");
+        let img = document.createElement("img");
+        let pBeschrijving = document.createElement("p");
+        let newDiv = document.createElement("div");
+        newDiv.className="divLanden";
+    shortcode = landen[i].shortcode;
+    naam = landen[i].name.innerText;
+    beschrijving = landen[i].beschrijving;
+
+    srcString = "resources/landen/"+shortcode+".png";
+    img.id="imageLand";
+    img.setAttribute("src", srcString);
+        window.alert("completed");
+        newDiv.appendChild(img);
+        newDiv.appendChild(naam);
+        newDiv.appendChild(pBeschrijving);
+        newDiv.appendChild(beschrijving);
+        document.getElementById('ploegen').appendChild(newDiv);
+
+    }
+
+
 }
