@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="style.css">
-    <script src="JSploegen.js"></script>
+    <script src="JSploegen.js">
+        showDivs(event);
+
+    </script>
 </head>
-<body>
+<body onload="showDivs(event)">
 <div id="imgContainer">
 <img id="wklogo" src="foto's/logo_wk_2018.png">
 </div>
 <div id="addForm" > </div>
-<form id="info" method="post" onsubmit="return createDiv()">
+
+<form id="info" method="post" onsubmit="return createDiv(event)">
     Naam: <input type = text maxlength="" name="naam" />
     <br>
     Shortcode: <input type="text" maxlength="" name="shortcode"/>

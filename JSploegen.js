@@ -1,24 +1,70 @@
+var landen = [];
+let teller = 0;
+function createDiv(e){
+    e.preventDefault();
 
-function createDiv(){
-    window.alert("blabla");
-    let newDiv = document.createElement("div");
-    newDiv.id = "divLand";
-    newDiv.style.width="300px";
-    newDiv.style.width="50px";
-    newDiv.style.border="1px";
-    newDiv.style.borderStyle="solid";
-    newDiv.style.backgroundColor="black";
-    let img = document.createElement("img");
+
+
+    let source = document.getElementsByName("shortcode")[0].value;
+    window.alert(source);
+
+
+    let naam = "";
+    naam=document.getElementsByName('naam')[0].value;
+
+    let beschrijving  = document.createElement("p");
+    beschrijving= document.getElementsByName('beschrijving')[0].value
+   // let landNaam = document.getElementsByName('naam')[0].value;
+    //let beschrijving = document.getElementsByName('beschrijving')[0].value;
+
+    let landObject;
+    landObject = {'shortcode': source,'landnaam':naam,'beschrijving':beschrijving};
+    window.alert("completed");
+    landen.push(landObject);
+
+
+    localStorage.setItem("land",JSON.stringify(landen));
+
+
+
+
+
+
+    // body.appendChild(newDiv);
+}
+function showDivs(e){
+    let landen = JSON.parse(localStorage.getItem("land"));
+    let shortcode;
+    let naam="";
+    let beschrijving;
+    let srcString;
+
+    let breakrule = document.createElement("br");
+
+
+
+    for(let i=0;i<landen.length;i++){
+
+        let naam = document.createElement("span");
+        let img = document.createElement("img");
+        let pBeschrijving = document.createElement("p");
+        let newDiv = document.createElement("div");
+        newDiv.className="divLanden";
+    shortcode = landen[i].shortcode;
+    naam = landen[i].name.innerText;
+    beschrijving = landen[i].beschrijving;
+
+    srcString = "resources/landen/"+shortcode+".png";
     img.id="imageLand";
-    let source = document.getElementById('shortcode');
-    img.setAttribute("src", "/resources/landen/"+source+".png");
-    let landNaam = document.getElementById('naam');
-    let beschrijving = document.getElementById('beschrijving');
-    window.alert("test");
-    document.getElementById('ploegen').appendChild(landNaam);
-    window.alert("dingding")
-   // body.appendChild(newDiv);
+    img.setAttribute("src", srcString);
+        window.alert("completed");
+        newDiv.appendChild(img);
+        newDiv.appendChild(naam);
+        newDiv.appendChild(pBeschrijving);
+        newDiv.appendChild(beschrijving);
+        document.getElementById('ploegen').appendChild(newDiv);
 
+    }
 
 
 }
