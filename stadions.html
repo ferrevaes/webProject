@@ -50,12 +50,20 @@
 
         let infowindow = new google.maps.InfoWindow();
 
+        var icon = {
+            url: "foto's/my-computer.png",
+            scaledSize: new google.maps.Size(50, 50),
+            origin: new google.maps.Point(0,0),
+            anchor: new google.maps.Point(0, 0)
+        };
+
         for(let i = 0; i < stadions.length; i++){
             let img = stadions[i].img;
 
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(stadions[i].lat, stadions[i].long),
-                map: map
+                map: map,
+                icon: icon
             });
 
 
